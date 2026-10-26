@@ -1,0 +1,187 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Farmer or Admin user profile",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 255 },
+        "fullName": { "type": "string", "maxLength": 100 },
+        "phoneNumber": { "type": "string", "maxLength": 30 },
+        "role": { "type": "string", "enum": ["FARMER", "ADMIN"] },
+        "termsAccepted": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "fullName", "role"]
+    },
+    "Farm": {
+      "title": "Farm",
+      "description": "Agricultural farm land details owned by a farmer",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 120 },
+        "location": { "type": "string", "maxLength": 200 },
+        "totalAreaAcres": { "type": "number" },
+        "soilType": { "type": "string", "maxLength": 50 },
+        "irrigationSource": { "type": "string", "maxLength": 50 },
+        "primaryCropType": { "type": "string", "maxLength": 100 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "userId", "name", "location", "totalAreaAcres", "soilType", "irrigationSource"]
+    },
+    "SoilTest": {
+      "title": "SoilTest",
+      "description": "Laboratory or field soil chemical and physical test record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "farmId": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "testDate": { "type": "string", "maxLength": 30 },
+        "phLevel": { "type": "number" },
+        "nitrogenLevel": { "type": "number" },
+        "phosphorusLevel": { "type": "number" },
+        "potassiumLevel": { "type": "number" },
+        "organicMatter": { "type": "number" },
+        "moistureContent": { "type": "number" },
+        "electricalConductivity": { "type": "number" },
+        "fertilityRating": { "type": "string", "maxLength": 50 },
+        "recommendations": { "type": "string", "maxLength": 1500 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "farmId", "userId", "testDate", "phLevel", "nitrogenLevel", "phosphorusLevel", "potassiumLevel"]
+    },
+    "CropRequirement": {
+      "title": "CropRequirement",
+      "description": "Catalog item describing biological and agronomic requirements for a crop",
+      "type": "object",
+      "properties": {
+        "cropId": { "type": "string", "maxLength": 64 },
+        "cropName": { "type": "string", "maxLength": 100 },
+        "scientificName": { "type": "string", "maxLength": 120 },
+        "category": { "type": "string", "maxLength": 50 },
+        "minimumSuitablePH": { "type": "number" },
+        "maximumSuitablePH": { "type": "number" },
+        "waterRequirementMm": { "type": "number" },
+        "growingDurationDaysMin": { "type": "number" },
+        "growingDurationDaysMax": { "type": "number" },
+        "botanicalFamily": { "type": "string", "maxLength": 60 },
+        "nitrogenFixer": { "type": "boolean" },
+        "dataConfidence": { "type": "string", "enum": ["HIGH", "MODERATE", "PROVISIONAL"] },
+        "sourceReference": { "type": "string", "maxLength": 255 }
+      },
+      "required": ["cropId", "cropName", "category", "minimumSuitablePH", "maximumSuitablePH", "waterRequirementMm"]
+    },
+    "CropRecommendationRecord": {
+      "title": "CropRecommendationRecord",
+      "description": "Historical snapshot of crop recommendation generated for a farm",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "farmId": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "season": { "type": "string", "maxLength": 30 },
+        "scoreVersion": { "type": "string", "maxLength": 20 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "farmId", "userId", "season"]
+    },
+    "CropHistoryRecord": {
+      "title": "CropHistoryRecord",
+      "description": "Field cultivation log of previous crops on a farm parcel",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "farmId": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "cropName": { "type": "string", "maxLength": 100 },
+        "season": { "type": "string", "maxLength": 50 },
+        "sowingDate": { "type": "string", "maxLength": 30 },
+        "harvestDate": { "type": "string", "maxLength": 30 },
+        "areaPlantedAcres": { "type": "number" },
+        "yieldMetricTons": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "farmId", "userId", "cropName", "season"]
+    },
+    "WaterBudgetRecord": {
+      "title": "WaterBudgetRecord",
+      "description": "Calculated seasonal farm water balance and irrigation budget",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "farmId": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "cropName": { "type": "string", "maxLength": 100 },
+        "totalWaterDemandM3": { "type": "number" },
+        "effectiveRainfallM3": { "type": "number" },
+        "netIrrigationDemandM3": { "type": "number" },
+        "grossIrrigationDemandM3": { "type": "number" },
+        "availableWaterSupplyM3": { "type": "number" },
+        "balanceStatus": { "type": "string", "maxLength": 40 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "farmId", "userId", "cropName", "balanceStatus"]
+    },
+    "ProfitabilityRecord": {
+      "title": "ProfitabilityRecord",
+      "description": "Economic estimate of cultivation cost, revenue, and gross margin",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "farmId": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "cropName": { "type": "string", "maxLength": 100 },
+        "totalCost": { "type": "number" },
+        "estimatedRevenue": { "type": "number" },
+        "estimatedProfit": { "type": "number" },
+        "breakEvenPrice": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "farmId", "userId", "cropName", "totalCost", "estimatedProfit"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile document storing basic identity and role"
+    },
+    "/farms/{farmId}": {
+      "schema": "Farm",
+      "description": "Farm documents owned by a registered farmer"
+    },
+    "/soilTests/{testId}": {
+      "schema": "SoilTest",
+      "description": "Soil health tests associated with farms and farmers"
+    },
+    "/crops/{cropId}": {
+      "schema": "CropRequirement",
+      "description": "Public verified crop requirements catalog"
+    },
+    "/recommendations/{recId}": {
+      "schema": "CropRecommendationRecord",
+      "description": "Saved crop recommendation snapshots"
+    },
+    "/cropHistory/{historyId}": {
+      "schema": "CropHistoryRecord",
+      "description": "Past cultivation timeline records by farm"
+    },
+    "/waterBudgets/{budgetId}": {
+      "schema": "WaterBudgetRecord",
+      "description": "Saved seasonal water budget balance computations"
+    },
+    "/profitabilityEstimates/{profId}": {
+      "schema": "ProfitabilityRecord",
+      "description": "Saved cost and margin profitability models"
+    }
+  }
+}

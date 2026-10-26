@@ -1,0 +1,66 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function to check authentication
+    function isAuthenticated() {
+      return request.auth != null && request.auth.uid != null;
+    }
+
+    // Helper function to check document ownership
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Verified Crop Catalog is public read-only reference data
+    match /crops/{cropId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // User profile: only the authenticated user can access their profile
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Farm records: strictly owned by the authenticated farmer
+    match /farms/{farmId} {
+      allow read, write: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // Soil test records: owned by the authenticated farmer
+    match /soilTests/{testId} {
+      allow read, write: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // Crop rotation history records
+    match /crop_history/{histId} {
+      allow read, write: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // Farming plans
+    match /farming_plans/{planId} {
+      allow read, write: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // Water budgets
+    match /water_budgets/{budgetId} {
+      allow read, write: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // Profitability estimates
+    match /profitability_estimates/{estimateId} {
+      allow read, write: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // Saved recommendations
+    match /crop_recommendations/{recId} {
+      allow read, write: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // Notifications
+    match /notifications/{notifId} {
+      allow read, write: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+    }
+  }
+}

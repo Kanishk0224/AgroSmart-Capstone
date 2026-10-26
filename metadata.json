@@ -1,0 +1,6 @@
+{
+  "name": "AgroSmart 360",
+  "description": "An Intelligent Crop Recommendation and Sustainable Agriculture Management System Using Java 8 and Firebase. Grow Smarter. Save Water. Sustain the Future.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

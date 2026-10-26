@@ -1,0 +1,118 @@
+{
+  "model_name": "AgroSmart-CropClassifier",
+  "model_version": "3.1.0",
+  "algorithm": "Gaussian Naive Bayes & Random Forest Ensemble",
+  "dataset": "Crop Recommendation Dataset (ICAR / Open Access CC-BY 4.0)",
+  "features": [
+    "N",
+    "P",
+    "K",
+    "temperature",
+    "humidity",
+    "ph",
+    "rainfall"
+  ],
+  "num_classes": 12,
+  "total_samples": 121,
+  "train_samples": 96,
+  "test_samples": 25,
+  "test_results": {
+    "accuracy": 0.96,
+    "macro_precision": 0.9722,
+    "macro_recall": 0.9583,
+    "macro_f1": 0.9556
+  },
+  "per_class_performance": {
+    "blackgram": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1_score": 0.6667,
+      "support": 2
+    },
+    "chickpea": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    },
+    "coffee": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    },
+    "cotton": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    },
+    "jute": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    },
+    "kidneybeans": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 3
+    },
+    "lentil": {
+      "precision": 0.6667,
+      "recall": 1.0,
+      "f1_score": 0.8,
+      "support": 2
+    },
+    "maize": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    },
+    "mothbeans": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    },
+    "mungbean": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    },
+    "pigeonpeas": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    },
+    "rice": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 2
+    }
+  },
+  "classes": [
+    "blackgram",
+    "chickpea",
+    "coffee",
+    "cotton",
+    "jute",
+    "kidneybeans",
+    "lentil",
+    "maize",
+    "mothbeans",
+    "mungbean",
+    "pigeonpeas",
+    "rice"
+  ],
+  "known_limitations": [
+    "Dataset represents tropical and subtropical agronomic zones.",
+    "Extreme drought or unseasonal frost values require rule-based constraint override.",
+    "Pest and disease pressures are out of domain for pure N-P-K classification."
+  ]
+}

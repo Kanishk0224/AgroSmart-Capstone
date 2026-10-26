@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: agrosmart-360-backend
+  main:
+    banner-mode: console
+
+firebase:
+  project-id: agrosmart-360
+  firestore-database-id: "(default)"
+  credentials-path: classpath:firebase-service-account.json
+
+cors:
+  allowed-origins: "http://localhost:3000,http://localhost:5173,https://ais-dev-766rcxnpkykvtz6omcbdck-662475264899.asia-east1.run.app"
+  allowed-methods: "GET,POST,PUT,PATCH,DELETE,OPTIONS"
+  allowed-headers: "*"
+  allow-credentials: true
+
+logging:
+  level:
+    root: INFO
+    com.agrosmart: DEBUG
+    org.springframework.security: INFO
